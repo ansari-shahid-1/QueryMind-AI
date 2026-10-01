@@ -2,13 +2,24 @@ from backend.database.connection import get_connection
 
 
 TABLE_RELATIONSHIPS = [
-    "orders.customer_id = customers.customer_id",
-    "order_items.order_id = orders.order_id",
-    "order_items.product_id = products.product_id",
-    "order_items.seller_id = sellers.seller_id",
-    "payments.order_id = orders.order_id",
-    "order_reviews.order_id = orders.order_id",
-    "products.product_category_name = category_translation.product_category_name",
+    "analytics.orders.customer_id = analytics.customers.customer_id",
+    "analytics.order_items.order_id = analytics.orders.order_id",
+    "analytics.order_items.product_id = analytics.products.product_id",
+    "analytics.order_items.seller_id = analytics.sellers.seller_id",
+    "analytics.payments.order_id = analytics.orders.order_id",
+    "analytics.order_reviews.order_id = analytics.orders.order_id",
+    "analytics.products.product_category_name = analytics.category_translation.product_category_name",
+]
+
+
+JOIN_GUIDANCE = [
+    "To connect order_items with category_translation, use the products table as an intermediate table.",
+    "First join order_items.product_id = products.product_id.",
+    "Then join products.product_category_name = category_translation.product_category_name.",
+    "Never join order_items.product_id directly to category_translation because category_translation does not contain product_id.",
+    "Use category_translation.product_category_name_english for English product category names.",
+    "Use products.product_category_name when the English translation is not required.",
+    "Always verify that a column exists in the provided schema before using it in SQL.",
 ]
 
 
@@ -59,6 +70,11 @@ def get_schema_context():
 
     for relationship in TABLE_RELATIONSHIPS:
         context.append(f"- {relationship}")
+
+    context.append("\nImportant JOIN guidance:")
+
+    for guidance in JOIN_GUIDANCE:
+        context.append(f"- {guidance}")
 
     context.append("\nAnalytical notes:")
 
