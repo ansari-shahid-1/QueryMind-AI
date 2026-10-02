@@ -26,6 +26,14 @@ The following screenshots show the local QueryMind AI workflow, from entering a 
 ### AI-Generated Insights
 ![AI-generated key insights](assets/screenshots/ai-insights.png)
 
+### ## Demo Video
+
+Watch the complete walkthrough of QueryMind AI, demonstrating natural-language queries, AI-generated SQL, database results, interactive visualizations, and automated insights.
+
+[**▶ Watch QueryMind AI Demo**](assets/demo/QueryMind_AI_Demo_Final.mp4)
+
+[Download the demo video](assets/demo/QueryMind_AI_Demo_Final.mp4)
+
 ---
 
 ## Problem Statement
